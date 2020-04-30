@@ -1,12 +1,12 @@
 import React from 'react';
-import Table from './containers/Table/Table';
+import TableWrapper from './containers/TableWrapper/TableWrapper';
 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Table />
+      <TableWrapper />
     </div>
   );
 }

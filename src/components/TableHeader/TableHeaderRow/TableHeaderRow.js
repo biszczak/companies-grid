@@ -1,8 +1,10 @@
 import React from 'react';
 
+import './TableHeaderRow.scss';
+
 const TableHeaderRow = () => {
     return (
-        <tr>
+        <tr className="data-table__row">
             <th>Id</th>
             <th>Name</th>
             <th>City</th>

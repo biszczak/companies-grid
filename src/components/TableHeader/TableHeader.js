@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
 import TableHeaderRow from './TableHeaderRow/TableHeaderRow';
 
+import './TableHeader.scss';
+
 const TableHeader = () => {
     return (
         <Fragment>
-            <caption>Companies</caption>
-            <thead>
+            <thead className="table-header">
                 <TableHeaderRow />
             </thead>
         </Fragment>

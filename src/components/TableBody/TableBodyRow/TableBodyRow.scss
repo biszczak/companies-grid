@@ -1,0 +1,16 @@
+.table-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+
+    td {
+        padding: 15px;
+        display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    }
+}

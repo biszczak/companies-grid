@@ -1,0 +1,13 @@
+.data-table__row{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+
+    th {
+        padding: 15px;
+        display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    }
+}
