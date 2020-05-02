@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Heading from '../../components/Heading/Heading';
 import Table from '../Table/Table';
+import Footer from '../../components/Footer/Footer';
 
 import { COMPANIES_API, INCOMES_API } from '../../common/Urls';
 
@@ -20,15 +21,24 @@ class TableWrapper extends Component {
                 companyTotalIncome: 'asc',
                 averageIncome: 'asc',
                 lastMonthIncome: 'asc'
-            }
+            },
+            currentPage: 1,
+            rowsPerPage: 6
         }
         this.compareBy = this.compareBy.bind(this);
-        this.sortBy = this.sortBy.bind(this)
+        this.sortBy = this.sortBy.bind(this);
+        this.handlePagination = this.handlePagination.bind(this);
     }
 
 
     componentDidMount() {
         this.getCompaniesData();
+    }
+
+    handlePagination(event) {
+        this.setState({
+            currentPage: Number(event.target.id)
+        });
     }
 
     handleChange = event => {
@@ -49,17 +59,9 @@ class TableWrapper extends Component {
                 value.lastMonthIncome.toLowerCase().includes(searchInput.toLowerCase())
             );
         });
-        this.setState({ filteredData });
+        this.setState({ data: filteredData });
     };
 
-
-    // sortBy(key) {
-    //     const data = this.state.data;
-    //     data.sort((a, b) => {
-    //         return parseFloat(a[key]) - parseFloat(b[key])
-    //     })
-    //     this.setState({ data })
-    // }
 
     compareBy(key) {
         if (this.state.direction[key] === 'asc') {
@@ -79,7 +81,9 @@ class TableWrapper extends Component {
     }
 
     sortBy(key) {
-        let dataCopy = [...this.state.data];
+        let dataCopy;
+        // let isFiltered = false;
+        this.state.filteredData ? dataCopy = [...this.state.filteredData] : dataCopy = [...this.state.data]
         if (key === 'id' || key === 'companyTotalIncome' || key === 'averageIncome' || key === 'lastMonthIncome') {
             dataCopy.sort((a, b) => (
                 this.state.direction[key] === 'asc'
@@ -168,9 +172,9 @@ class TableWrapper extends Component {
             <div className="table-wrapper">
                 <Heading handleChange={this.handleChange} />
                 <Table
-                    data={this.state.filteredData ? this.state.filteredData : this.state.data}
+                    data={this.state.data}
                     sortBy={this.sortBy} />
-                {/* <Fotter /> */}
+                <Footer />
             </div>
         );
     }
