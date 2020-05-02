@@ -7,12 +7,25 @@ import { COMPANIES_API, INCOMES_API } from '../../common/Urls';
 import './TableWrapper.scss';
 
 class TableWrapper extends Component {
-    state = {
-        data: null,
-        filteredData: null,
-        columns: [],
-        searchInput: ""
+    constructor(props) {
+        super(props)
+        this.state = {
+            data: null,
+            filteredData: null,
+            columns: [],
+            searchInput: "",
+            direction: {
+                id: 'asc',
+                name: 'asc',
+                companyTotalIncome: 'asc',
+                averageIncome: 'asc',
+                lastMonthIncome: 'asc'
+            }
+        }
+        this.compareBy = this.compareBy.bind(this);
+        this.sortBy = this.sortBy.bind(this)
     }
+
 
     componentDidMount() {
         this.getCompaniesData();
@@ -39,6 +52,58 @@ class TableWrapper extends Component {
         this.setState({ filteredData });
     };
 
+
+    // sortBy(key) {
+    //     const data = this.state.data;
+    //     data.sort((a, b) => {
+    //         return parseFloat(a[key]) - parseFloat(b[key])
+    //     })
+    //     this.setState({ data })
+    // }
+
+    compareBy(key) {
+        if (this.state.direction[key] === 'asc') {
+            return function (a, b) {
+                if (a[key] < b[key]) return -1;
+                if (a[key] > b[key]) return 1;
+                return 0;
+            };
+        } else {
+            return function (a, b) {
+                if (b[key] < a[key]) return -1;
+                if (b[key] > a[key]) return 1;
+                return 0;
+            };
+        }
+
+    }
+
+    sortBy(key) {
+        let dataCopy = [...this.state.data];
+        if (key === 'id' || key === 'companyTotalIncome' || key === 'averageIncome' || key === 'lastMonthIncome') {
+            dataCopy.sort((a, b) => (
+                this.state.direction[key] === 'asc'
+                    ? parseFloat(a[key]) - parseFloat(b[key])
+                    : parseFloat(b[key]) - parseFloat(a[key])
+            ))
+            this.setState({
+                data: dataCopy,
+                direction: {
+                    [key]: this.state.direction[key] === 'asc' ? 'desc' : 'asc'
+                }
+            })
+        } else {
+            dataCopy.sort(this.compareBy(key));
+            this.setState({
+                data: dataCopy,
+                direction: {
+                    [key]: this.state.direction[key] === 'asc' ? 'desc' : 'asc'
+                }
+            })
+        }
+        // dataCopy.sort(this.compareBy(key));
+        // this.setState({ data: dataCopy });
+    }
 
     async getData(name) {
         const response = await fetch(name);
@@ -102,7 +167,9 @@ class TableWrapper extends Component {
         return (
             <div className="table-wrapper">
                 <Heading handleChange={this.handleChange} />
-                <Table data={this.state.filteredData ? this.state.filteredData : this.state.data} />
+                <Table
+                    data={this.state.filteredData ? this.state.filteredData : this.state.data}
+                    sortBy={this.sortBy} />
                 {/* <Fotter /> */}
             </div>
         );

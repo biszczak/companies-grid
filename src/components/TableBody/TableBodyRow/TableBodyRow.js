@@ -24,12 +24,12 @@ class TableBodyRow extends Component {
 
             content = this.props.data.map(company => (
                 <tr key={company.id} className="table-row">
-                    <td>{company.id}</td>
-                    <td>{company.name}</td>
-                    <td>{company.city}</td>
-                    <td>{company.companyTotalIncome}</td>
-                    <td>{company.averageIncome}</td>
-                    <td>{company.lastMonthIncome}</td>
+                    <td data-title="id">{company.id}</td>
+                    <td data-title="name">{company.name}</td>
+                    <td data-title="city">{company.city}</td>
+                    <td data-title="companyTotalIncome">{company.companyTotalIncome}</td>
+                    <td data-title="averageIncome">{company.averageIncome}</td>
+                    <td data-title="lastMonthIncome">{company.lastMonthIncome}</td>
                 </tr>
             )
             );

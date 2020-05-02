@@ -2,15 +2,27 @@ import React from 'react';
 
 import './TableHeaderRow.scss';
 
-const TableHeaderRow = () => {
+const TableHeaderRow = (props) => {
     return (
         <tr className="data-table__row">
-            <th>Id</th>
-            <th>Name</th>
-            <th>City</th>
-            <th>Total income</th>
-            <th>Average income</th>
-            <th>Last month income</th>
+            <th>
+                <button onClick={() => props.sortBy('id')}>Id</button>
+            </th>
+            <th>
+                <button onClick={() => props.sortBy('name')}>Name</button>
+            </th>
+            <th>
+                <button onClick={() => props.sortBy('city')}>City</button>
+            </th>
+            <th>
+                <button onClick={() => props.sortBy('companyTotalIncome')}>Total income</button>
+            </th>
+            <th>
+                <button onClick={() => props.sortBy('averageIncome')}>Average income</button>
+            </th>
+            <th>
+                <button onClick={() => props.sortBy('lastMonthIncome')}>Last month income</button>
+            </th>
         </tr>
     );
 }

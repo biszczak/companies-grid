@@ -3,11 +3,11 @@ import TableHeaderRow from './TableHeaderRow/TableHeaderRow';
 
 import './TableHeader.scss';
 
-const TableHeader = () => {
+const TableHeader = (props) => {
     return (
         <Fragment>
             <thead className="table-header">
-                <TableHeaderRow />
+                <TableHeaderRow sortBy={props.sortBy} />
             </thead>
         </Fragment>
     );
