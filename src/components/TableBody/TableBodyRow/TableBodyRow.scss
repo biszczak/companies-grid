@@ -5,6 +5,11 @@
     align-items: stretch;
     width: 100%;
     border-bottom: 1px solid #ccc;
+    transition: ease-in .3s;
+
+    &:hover {
+        background-color: #f0f8fe;
+    }
 
     td {
         padding: 15px;

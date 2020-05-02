@@ -3,10 +3,10 @@ import TableBodyRow from '../TableBody/TableBodyRow/TableBodyRow';
 
 import './TableBody.scss';
 
-const TableBody = () => {
+const TableBody = (props) => {
     return (
         <tbody className="table-body">
-            <TableBodyRow />
+            <TableBodyRow data={props.data} />
         </tbody>
     );
 }
