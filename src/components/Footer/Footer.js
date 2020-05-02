@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
 
+import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md';
+
 import './Footer.scss'
 
 const Footer = (props) => {
@@ -7,22 +9,36 @@ const Footer = (props) => {
     for (let i = 1; i <= Math.ceil(props.dataLength / props.rowsPerPage); i++) {
         pageNumbers.push(i);
     }
+    const lastPage = pageNumbers.length;
+    const content = (
+        <div className="footer-container">
+            <div className="records-number">
+                <p>Elements on page: </p>
+                <select
+                    onChange={props.handleSelectRowsPerPage}
+                    value={props.rowsPerPage}>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+            <div className="pages-counter">
+                <button onClick={props.handlePaginationPageDecrease}>
+                    <MdNavigateBefore />
+                </button>
+                <p>{props.currentPage} of {pageNumbers.length}</p>
+                <button onClick={() => props.handlePaginationPageIncrease(lastPage)}>
+                    <MdNavigateNext />
+                </button>
+            </div>
+        </div>
+    )
     return (
         <Fragment>
-            <ul className="pagination-pages">
-                {pageNumbers.map(number => {
-                    return <li
-                        key={number}
-                        id={number}
-                        onClick={props.handlePagination}>{number}</li>
-                })}
-            </ul>
-            {/* <div>
-                <button>-</button>
-                <span></span>
-                <button>+</button>
-            </div> */}
+            {props.dataLength ? content : null}
         </Fragment>
+
     );
 }
 

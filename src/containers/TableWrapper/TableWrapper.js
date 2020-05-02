@@ -27,7 +27,7 @@ class TableWrapper extends Component {
         }
         this.compareBy = this.compareBy.bind(this);
         this.sortBy = this.sortBy.bind(this);
-        this.handlePagination = this.handlePagination.bind(this);
+        // this.handlePagination = this.handlePagination.bind(this);
     }
 
 
@@ -35,10 +35,34 @@ class TableWrapper extends Component {
         this.getCompaniesData();
     }
 
-    handlePagination(event) {
+    // handlePagination(event) {
+    //     this.setState({
+    //         currentPage: Number(event.target.id)
+    //     });
+    // }
+
+    handleSelectRowsPerPage = (e) => {
         this.setState({
-            currentPage: Number(event.target.id)
-        });
+            rowsPerPage: e.target.value
+        })
+    }
+
+    handlePaginationPageIncrease = (lastPage) => {
+        const currentPage = this.state.currentPage;
+        if (currentPage < lastPage) {
+            this.setState({
+                currentPage: currentPage + 1
+            });
+        }
+    }
+
+    handlePaginationPageDecrease = () => {
+        const currentPage = this.state.currentPage;
+        if (currentPage > 1) {
+            this.setState({
+                currentPage: currentPage - 1
+            });
+        }
     }
 
     handleChange = event => {
@@ -182,9 +206,12 @@ class TableWrapper extends Component {
                     data={currentRows}
                     sortBy={this.sortBy} />
                 <Footer
-                    dataLength={data ? data.length : 'Loading'}
+                    dataLength={data ? data.length : null}
                     rowsPerPage={rowsPerPage}
-                    handlePagination={this.handlePagination} />
+                    currentPage={currentPage}
+                    handleSelectRowsPerPage={this.handleSelectRowsPerPage}
+                    handlePaginationPageIncrease={this.handlePaginationPageIncrease}
+                    handlePaginationPageDecrease={this.handlePaginationPageDecrease} />
             </div>
         );
     }
