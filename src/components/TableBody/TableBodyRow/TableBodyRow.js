@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react';
+import Spinner from '../../UI/Spinner/Spinner';
+
 import { COMPANIES_API, INCOMES_API } from '../../../common/Urls';
 
 import './TableBodyRow.scss';
@@ -78,7 +80,7 @@ class TableBodyRow extends Component {
 
         let content;
         if (!this.state.data) {
-            content = 'Loading...';
+            content = <Spinner />;
         } else {
 
             content = this.state.data.map(company => (
