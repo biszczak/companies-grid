@@ -67,11 +67,11 @@ class TableWrapper extends Component {
         const companies = await this.getData(COMPANIES_API);
         let companiesArr = [...companies];
         let companiesArrCopy = [...companiesArr];
-        let incomesArr = [];
+        // let incomesArr = [];
 
-        let companyIncome = null;
-        let averageIncome = null;
-        let lastMonthIncome = null;
+        // let companyIncome = null;
+        // let averageIncome = null;
+        // let lastMonthIncome = null;
         Promise.all(companiesArr.map((company, index) => fetch(`${INCOMES_API}/${company.id}`)))
             .then(resp => Promise.all(resp.map(r => r.json())))
             .then(data => {
