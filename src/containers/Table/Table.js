@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import TableHeader from '../../components/TableHeader/TableHeader';
 import TableBody from '../../components/TableBody/TableBody';
 
-
 import './Table.scss';
 
 
@@ -12,8 +11,11 @@ class Table extends Component {
     render() {
         return (
             <table className="data-table">
+                {/* <input
+                    onChange={this.handleChange}
+                /> */}
                 <TableHeader />
-                <TableBody data={this.state.data} />
+                <TableBody data={this.props.data} />
             </table>
         );
     }
