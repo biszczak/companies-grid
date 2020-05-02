@@ -1,8 +1,28 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-const Footer = () => {
+import './Footer.scss'
+
+const Footer = (props) => {
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(props.dataLength / props.rowsPerPage); i++) {
+        pageNumbers.push(i);
+    }
     return (
-        <div>1,2,3</div>
+        <Fragment>
+            <ul className="pagination-pages">
+                {pageNumbers.map(number => {
+                    return <li
+                        key={number}
+                        id={number}
+                        onClick={props.handlePagination}>{number}</li>
+                })}
+            </ul>
+            {/* <div>
+                <button>-</button>
+                <span></span>
+                <button>+</button>
+            </div> */}
+        </Fragment>
     );
 }
 

@@ -23,7 +23,7 @@ class TableWrapper extends Component {
                 lastMonthIncome: 'asc'
             },
             currentPage: 1,
-            rowsPerPage: 6
+            rowsPerPage: 20
         }
         this.compareBy = this.compareBy.bind(this);
         this.sortBy = this.sortBy.bind(this);
@@ -168,13 +168,23 @@ class TableWrapper extends Component {
     }
 
     render() {
+
+        const { data, currentPage, rowsPerPage } = this.state;
+
+        const indexOfLastRow = currentPage * rowsPerPage;
+        const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+        const currentRows = data ? data.slice(indexOfFirstRow, indexOfLastRow) : null;
+
         return (
             <div className="table-wrapper">
                 <Heading handleChange={this.handleChange} />
                 <Table
-                    data={this.state.data}
+                    data={currentRows}
                     sortBy={this.sortBy} />
-                <Footer />
+                <Footer
+                    dataLength={data ? data.length : 'Loading'}
+                    rowsPerPage={rowsPerPage}
+                    handlePagination={this.handlePagination} />
             </div>
         );
     }
