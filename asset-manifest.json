@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/companies-grid/static/css/main.6b19aeac.chunk.css",
+    "main.js": "/companies-grid/static/js/main.477fe3a1.chunk.js",
+    "main.js.map": "/companies-grid/static/js/main.477fe3a1.chunk.js.map",
+    "runtime-main.js": "/companies-grid/static/js/runtime-main.75758b50.js",
+    "runtime-main.js.map": "/companies-grid/static/js/runtime-main.75758b50.js.map",
+    "static/js/2.60d2a8d0.chunk.js": "/companies-grid/static/js/2.60d2a8d0.chunk.js",
+    "static/js/2.60d2a8d0.chunk.js.map": "/companies-grid/static/js/2.60d2a8d0.chunk.js.map",
+    "index.html": "/companies-grid/index.html",
+    "precache-manifest.34c77b61cff36f163e0583549f26d78d.js": "/companies-grid/precache-manifest.34c77b61cff36f163e0583549f26d78d.js",
+    "service-worker.js": "/companies-grid/service-worker.js",
+    "static/css/main.6b19aeac.chunk.css.map": "/companies-grid/static/css/main.6b19aeac.chunk.css.map",
+    "static/js/2.60d2a8d0.chunk.js.LICENSE.txt": "/companies-grid/static/js/2.60d2a8d0.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.75758b50.js",
+    "static/js/2.60d2a8d0.chunk.js",
+    "static/css/main.6b19aeac.chunk.css",
+    "static/js/main.477fe3a1.chunk.js"
+  ]
+}
