@@ -14,7 +14,9 @@ class Table extends Component {
                 {/* <input
                     onChange={this.handleChange}
                 /> */}
-                <TableHeader sortBy={this.props.sortBy} />
+                <TableHeader
+                    sortBy={this.props.sortBy}
+                    sortSymbol={this.props.sortSymbol} />
                 <TableBody data={this.props.data} />
             </table>
         );

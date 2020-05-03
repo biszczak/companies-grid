@@ -10,3 +10,15 @@
   border-radius: 50px;
     background-color: #ffffff;
 }
+
+@media (max-width: 768px) {
+  .table-wrapper {
+      margin-top: 0;
+  }
+}
+
+@media (max-width: 499px) {
+  .table-wrapper {
+      padding: 030px 0 20px;
+  }
+}

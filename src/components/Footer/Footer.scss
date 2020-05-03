@@ -15,8 +15,15 @@
     }
     & select {
         height: 30px;
-    width: 50px;
+    width: 56px;
     border-radius: 25px;
+    transition: ease-in .3s; 
+    cursor: pointer;
+    color: #3a4555;
+    padding-left: 8px;
+    &:hover {
+        border: 1px solid #2699fb;
+    }
     }
 }
 
@@ -48,5 +55,18 @@
         top: 5px;
         right: 12px;
     }
+    }
+}
+
+@media (max-width: 499px) {
+    .footer-container {
+        flex-direction: column-reverse;
+
+        .records-number {
+            padding-left: 0;
+        }
+        .pages-counter {
+            padding-right: 0;
+        }
     }
 }

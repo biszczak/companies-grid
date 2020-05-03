@@ -8,7 +8,7 @@ const Heading = (props) => {
     return (
         <div className="heading">
             <h1 className="title">Companies</h1>
-            <SearchInput handleChange={props.handleChange} />
+            <SearchInput handleChange={props.handleChange} data={props.data} />
         </div>
     );
 }

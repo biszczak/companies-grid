@@ -7,15 +7,42 @@
     border-bottom: 1px solid #ccc;
     transition: ease-in .3s;
 
+    &:nth-child(even) {
+        background-color: #f8f8f8;
+    }
+
     &:hover {
         background-color: #f0f8fe;
     }
 
     td {
-        padding: 15px;
+        padding: 10px 15px;
         display: flex;
     justify-content: flex-start;
     align-items: center;
     width: 100%;
+    &:first-child {
+        max-width: 50px;
+    }
+    }
+}
+
+.no-results {
+    display: block;
+margin: 50px auto;
+}
+
+@media (max-width: 768px) {
+    .table-row {
+        height: 100%;
+        flex-direction: column;
+
+        td {
+            padding: 5px 15px;
+            width: auto;
+            &:first-child {
+                max-width: none;
+            }
+        }
     }
 }

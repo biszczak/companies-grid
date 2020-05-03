@@ -11,3 +11,9 @@
     margin: 0;
     padding-left: 15px;;
 }
+
+@media (max-width: 499px) {
+    .heading {
+        flex-direction: column;
+    }
+}

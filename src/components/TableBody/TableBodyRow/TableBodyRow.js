@@ -20,7 +20,10 @@ class TableBodyRow extends Component {
         let content;
         if (!this.props.data) {
             content = <Spinner />;
-        } else {
+        } else if (this.props.data.length === 0) {
+            content = <p className="no-results">No search results</p>
+        }
+        else {
 
             content = this.props.data.map(company => (
                 <tr key={company.id} className="table-row">

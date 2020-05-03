@@ -12,34 +12,28 @@ class TableWrapper extends Component {
         super(props)
         this.state = {
             data: null,
-            filteredData: null,
+            dataForFilter: null,
             columns: [],
             searchInput: "",
-            direction: {
+            sortDirection: {
                 id: 'asc',
                 name: 'asc',
                 companyTotalIncome: 'asc',
                 averageIncome: 'asc',
-                lastMonthIncome: 'asc'
+                lastMonthIncome: 'asc',
+                city: 'asc'
             },
             currentPage: 1,
             rowsPerPage: 20
         }
         this.compareBy = this.compareBy.bind(this);
         this.sortBy = this.sortBy.bind(this);
-        // this.handlePagination = this.handlePagination.bind(this);
     }
 
 
     componentDidMount() {
         this.getCompaniesData();
     }
-
-    // handlePagination(event) {
-    //     this.setState({
-    //         currentPage: Number(event.target.id)
-    //     });
-    // }
 
     handleSelectRowsPerPage = (e) => {
         this.setState({
@@ -72,8 +66,8 @@ class TableWrapper extends Component {
     };
 
     globalSearch = () => {
-        let { searchInput, data } = this.state;
-        let filteredData = data.filter(value => {
+        let { searchInput, dataForFilter } = this.state;
+        let filteredData = dataForFilter.filter(value => {
             return (
                 value.name.toLowerCase().includes(searchInput.toLowerCase()) ||
                 value.city.toLowerCase().includes(searchInput.toLowerCase()) ||
@@ -83,12 +77,23 @@ class TableWrapper extends Component {
                 value.lastMonthIncome.toLowerCase().includes(searchInput.toLowerCase())
             );
         });
-        this.setState({ data: filteredData });
+        this.setState({
+            currentPage: 1,
+            data: filteredData,
+            sortDirection: {
+                id: 'asc',
+                name: 'asc',
+                companyTotalIncome: 'asc',
+                averageIncome: 'asc',
+                lastMonthIncome: 'asc',
+                city: 'asc'
+            }
+        });
     };
 
 
     compareBy(key) {
-        if (this.state.direction[key] === 'asc') {
+        if (this.state.sortDirection[key] === 'asc') {
             return function (a, b) {
                 if (a[key] < b[key]) return -1;
                 if (a[key] > b[key]) return 1;
@@ -106,31 +111,38 @@ class TableWrapper extends Component {
 
     sortBy(key) {
         let dataCopy;
-        // let isFiltered = false;
+        const setAllToAsc = {
+            id: 'asc',
+            name: 'asc',
+            companyTotalIncome: 'asc',
+            averageIncome: 'asc',
+            lastMonthIncome: 'asc',
+            city: 'asc'
+        }
         this.state.filteredData ? dataCopy = [...this.state.filteredData] : dataCopy = [...this.state.data]
         if (key === 'id' || key === 'companyTotalIncome' || key === 'averageIncome' || key === 'lastMonthIncome') {
             dataCopy.sort((a, b) => (
-                this.state.direction[key] === 'asc'
+                this.state.sortDirection[key] === 'asc'
                     ? parseFloat(a[key]) - parseFloat(b[key])
                     : parseFloat(b[key]) - parseFloat(a[key])
             ))
             this.setState({
                 data: dataCopy,
-                direction: {
-                    [key]: this.state.direction[key] === 'asc' ? 'desc' : 'asc'
+                sortDirection: {
+                    ...setAllToAsc,
+                    [key]: this.state.sortDirection[key] === 'asc' ? 'desc' : 'asc'
                 }
             })
         } else {
             dataCopy.sort(this.compareBy(key));
             this.setState({
                 data: dataCopy,
-                direction: {
-                    [key]: this.state.direction[key] === 'asc' ? 'desc' : 'asc'
+                sortDirection: {
+                    ...setAllToAsc,
+                    [key]: this.state.sortDirection[key] === 'asc' ? 'desc' : 'asc'
                 }
             })
         }
-        // dataCopy.sort(this.compareBy(key));
-        // this.setState({ data: dataCopy });
     }
 
     async getData(name) {
@@ -160,11 +172,7 @@ class TableWrapper extends Component {
         const companies = await this.getData(COMPANIES_API);
         let companiesArr = [...companies];
         let companiesArrCopy = [...companiesArr];
-        // let incomesArr = [];
 
-        // let companyIncome = null;
-        // let averageIncome = null;
-        // let lastMonthIncome = null;
         Promise.all(companiesArr.map((company, index) => fetch(`${INCOMES_API}/${company.id}`)))
             .then(resp => Promise.all(resp.map(r => r.json())))
             .then(data => {
@@ -187,13 +195,13 @@ class TableWrapper extends Component {
                         }
                     })
                 })
-                this.setState({ data: mergedData })
+                this.setState({ data: mergedData, dataForFilter: mergedData })
             });
     }
 
     render() {
 
-        const { data, currentPage, rowsPerPage } = this.state;
+        const { data, currentPage, rowsPerPage, sortDirection } = this.state;
 
         const indexOfLastRow = currentPage * rowsPerPage;
         const indexOfFirstRow = indexOfLastRow - rowsPerPage;
@@ -201,10 +209,13 @@ class TableWrapper extends Component {
 
         return (
             <div className="table-wrapper">
-                <Heading handleChange={this.handleChange} />
+                <Heading
+                    handleChange={this.handleChange}
+                    data={currentRows} />
                 <Table
                     data={currentRows}
-                    sortBy={this.sortBy} />
+                    sortBy={this.sortBy}
+                    sortSymbol={sortDirection} />
                 <Footer
                     dataLength={data ? data.length : null}
                     rowsPerPage={rowsPerPage}

@@ -7,12 +7,24 @@ input {
     border-radius: 30px;
     height: 36px;
     font-family: 'Roboto', sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     color: #3D3D3C;
     font-weight: 400;
     padding-left: 15px;
-    padding-right: 20px;
+    padding-right: 30px;
+    transition: ease-in .3s;
+    &:hover, &:focus {
+      border: 1px solid #2699fb;
+    }
+    &:disabled {
+      cursor: not-allowed;
+      background-color: #fff;
+      &:hover {
+        border: 1px solid #cccccc;
+      }
+    }
   }
+
   .search-icon {
     font-size: 18px;
     color: #2699fb;
@@ -20,3 +32,11 @@ input {
     right: 27px;
     top: 4px;
   }
+
+  @media (max-width: 499px) {
+    .search-wrapper {
+      padding-left: 15px;
+      margin-top: 15px;
+  }
+}
+  

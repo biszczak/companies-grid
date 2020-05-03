@@ -7,7 +7,9 @@ const TableHeader = (props) => {
     return (
         <Fragment>
             <thead className="table-header">
-                <TableHeaderRow sortBy={props.sortBy} />
+                <TableHeaderRow
+                    sortBy={props.sortBy}
+                    sortSymbol={props.sortSymbol} />
             </thead>
         </Fragment>
     );
