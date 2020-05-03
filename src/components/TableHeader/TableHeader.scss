@@ -1,6 +1,8 @@
+@import '../../variables.scss';
+
 .table-header {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    background-color: #f0f8fe;
+    background-color: $secondary-color;
 }

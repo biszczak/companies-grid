@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiChevronDown } from 'react-icons/fi';
+// import { FiChevronDown } from 'react-icons/fi';
 
 import './TableHeaderRow.scss';
 
@@ -21,7 +21,9 @@ const TableHeaderRow = (props) => {
                         <button
                             className='sort-button'
                             onClick={() => props.sortBy(element.sortBy)}>{element.name}</button>
-                        {element.icon === 'desc' ? <FiChevronDown /> : null}
+                        {/* {element.icon === 'desc' ? <FiChevronDown /> : null} */}
+                        {/* {console.log(this)} */}
+
                     </th>
                 )
             })}

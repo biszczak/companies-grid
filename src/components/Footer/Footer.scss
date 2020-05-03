@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .footer-container {
     width: 100%;
     display: flex;
@@ -15,15 +17,15 @@
     }
     & select {
         height: 30px;
-    width: 56px;
-    border-radius: 25px;
-    transition: ease-in .3s; 
-    cursor: pointer;
-    color: #3a4555;
-    padding-left: 8px;
-    &:hover {
-        border: 1px solid #2699fb;
-    }
+        width: 56px;
+        border-radius: 25px;
+        transition: ease-in .3s; 
+        cursor: pointer;
+        color: $font-color;
+        padding-left: 8px;
+        &:hover {
+            border: 1px solid $primary-color;
+        }
     }
 }
 
@@ -35,26 +37,26 @@
         margin: 10px;
     }
     & button {
-    border: none;
-    outline: none;
-    cursor: pointer;
-    background-color: #2699fb;
-    color: #fff;
-    font-size: 19px;
-    padding: 0;
-    height: 30px;
-    width: 43px;
-    border-radius: 25px;
-    position: relative;
-    transition: ease-in .3s;
-    &:hover {
-        opacity: .6;
-    }
-    & svg {
-        position: absolute;
-        top: 5px;
-        right: 12px;
-    }
+        border: none;
+        outline: none;
+        cursor: pointer;
+        background-color: $primary-color;
+        color: #fff;
+        font-size: 19px;
+        padding: 0;
+        height: 30px;
+        width: 43px;
+        border-radius: 25px;
+        position: relative;
+        transition: ease-in .3s;
+        &:hover {
+            opacity: .6;
+        }
+        & svg {
+            position: absolute;
+            top: 5px;
+            right: 12px;
+        }
     }
 }
 

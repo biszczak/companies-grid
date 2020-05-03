@@ -1,12 +1,14 @@
+@import '../../../variables.scss';
+
 .search-wrapper {
     padding-right: 15px;;
 }
 
 input {
-    border: 1px solid #cccccc;
+    border: 1px solid $grey-color;
     border-radius: 30px;
     height: 36px;
-    font-family: 'Roboto', sans-serif;
+    font-family: $font-stack;
     font-size: 14px;
     color: #3D3D3C;
     font-weight: 400;
@@ -14,20 +16,20 @@ input {
     padding-right: 30px;
     transition: ease-in .3s;
     &:hover, &:focus {
-      border: 1px solid #2699fb;
+      border: 1px solid $primary-color;
     }
     &:disabled {
       cursor: not-allowed;
       background-color: #fff;
       &:hover {
-        border: 1px solid #cccccc;
+        border: 1px solid $grey-color;
       }
     }
   }
 
   .search-icon {
     font-size: 18px;
-    color: #2699fb;
+    color: $primary-color;
     position: relative;
     right: 27px;
     top: 4px;

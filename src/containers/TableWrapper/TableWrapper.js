@@ -37,6 +37,7 @@ class TableWrapper extends Component {
 
     handleSelectRowsPerPage = (e) => {
         this.setState({
+            currentPage: 1,
             rowsPerPage: e.target.value
         })
     }
@@ -59,7 +60,7 @@ class TableWrapper extends Component {
         }
     }
 
-    handleChange = event => {
+    handleSearchChange = event => {
         this.setState({ searchInput: event.target.value }, () => {
             this.globalSearch();
         });
@@ -210,7 +211,7 @@ class TableWrapper extends Component {
         return (
             <div className="table-wrapper">
                 <Heading
-                    handleChange={this.handleChange}
+                    handleChange={this.handleSearchChange}
                     data={currentRows} />
                 <Table
                     data={currentRows}

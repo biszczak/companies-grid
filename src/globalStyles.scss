@@ -1,12 +1,14 @@
+@import './variables.scss';
+
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: $font-stack;
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
-  background-color: #07285d;
-  color: #3a4555;
+  background-color: $background-color;
+  color: $font-color;
 }
 
 code {

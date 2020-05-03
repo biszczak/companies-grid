@@ -1,40 +1,43 @@
+@import '../../../variables.scss';
+
 .table-row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: stretch;
     width: 100%;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid $grey-color;
     transition: ease-in .3s;
 
     &:nth-child(even) {
-        background-color: #f8f8f8;
+        background-color: $even-row-background;
     }
 
     &:hover {
-        background-color: #f0f8fe;
+        background-color: $secondary-color;
     }
 
     td {
         padding: 10px 15px;
         display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    &:first-child {
-        max-width: 50px;
-    }
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        &:first-child {
+            max-width: 50px;
+        }
     }
 }
 
 .no-results {
     display: block;
-margin: 50px auto;
+    margin: 50px auto;
 }
 
 @media (max-width: 768px) {
     .table-row {
         height: 100%;
+        min-height: 170px;
         flex-direction: column;
 
         td {

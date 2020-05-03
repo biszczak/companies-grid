@@ -21,7 +21,7 @@ class TableBodyRow extends Component {
         if (!this.props.data) {
             content = <Spinner />;
         } else if (this.props.data.length === 0) {
-            content = <p className="no-results">No search results</p>
+            content = <tr className="no-results"><td><p>No search results</p></td></tr>
         }
         else {
 
